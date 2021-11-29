@@ -1,4 +1,5 @@
 import readline from 'readline';
+import prompts, { Answers } from 'prompts';
 
 class Console {
   private static _instance : Console = new Console();
@@ -23,21 +24,19 @@ class Console {
     this.consoleLine.write("\n");
   }
 
-  public showOptions(options : string[], question: string) : Promise<string> {
-
-    this.consoleLine.write("Options to choose: ");
-    this.consoleLine.write("\n\n");
-
-    for(let i in options) {
-      this.consoleLine.write(`${parseInt(i)+1}. ${options[i]}`);
-      this.consoleLine.write("\n");
-    }
-
-    return new Promise((resolve) => this.consoleLine.question(question, (answer: string) => {
-      resolve(answer);
-    }));
+  public showOptions(options : string[], question: string) : Promise<Answers<string>> {
+    return prompts({
+      type: 'select',
+      name: 'value',
+      message: question,
+      choices: [
+        { title: options[0], value: '1' },
+        { title: options[1], value: '2' },
+        { title: options[2], value: '3' }
+      ],
+      initial: 1
+    })
   }
-
 }
 
 export default Console.getInstance();

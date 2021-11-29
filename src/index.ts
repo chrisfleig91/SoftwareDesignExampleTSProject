@@ -6,6 +6,7 @@ import { PersonJson } from './classes/type/personJson.type';
 import Console from './classes/singletons/Console';
 import FileHandler from './classes/singletons/FileHandler';
 import PersonParser from './classes/singletons/PersonParser';
+import { Answers } from 'prompts';
 
 export class Main {
   private _person : any;
@@ -17,7 +18,7 @@ export class Main {
   }
 
   public async showOptions() : Promise<void> {
-    let answer: string = await Console.showOptions(
+    let answer: Answers<string> = await Console.showOptions(
       [
         "Read person file",
         "Change person",
@@ -26,7 +27,7 @@ export class Main {
       "Which option do you want to choose?"
     );
 
-    this.handleAnswer(answer);
+    this.handleAnswer(answer.value);
   } 
 
   public readPersonFile() : void {

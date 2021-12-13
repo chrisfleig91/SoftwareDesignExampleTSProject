@@ -6,7 +6,7 @@
   "scripts": {
     "start": "ts-node-dev --respawn --transpile-only ./src/index.ts",
     "test": "jest",
-    "debug": "tsc"
+    "debug": "tsc && node ./dist/index.js"
   },
   "author": "",
   "license": "ISC",

@@ -33,6 +33,7 @@ export class Main {
   public readPersonFile() : void {
     let readPerson : PersonJson = FileHandler.readJsonFile("./files/person.json");
     this._person = PersonParser.parsePersonJsonToPerson(readPerson);
+    console.log(this._person);
   }
 
   public changePerson() : void {

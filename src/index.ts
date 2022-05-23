@@ -11,6 +11,8 @@ export class Main {
   }
 
   public async getPersonValues() {
+
+    this.readPersonFile()
     // ConsoleHandling.printText("I'm running")
     // let answerNameConsole = await ConsoleHandling.askAQuestion("What's your name?")
     // let answerAgeConsole = await ConsoleHandling.askAQuestion("How old are you?")
@@ -32,7 +34,16 @@ export class Main {
     person.sayYourName()
     person.sayYourAge()
 
-    FileHandler.writeFile(person, "data/", "person.json")
+    this.writePersonFile(person)
+  }
+
+  public writePersonFile(data: Person) {
+    FileHandler.writeFile(data, "data/", "person.json")
+  }
+
+  public readPersonFile() {
+    let personJson : Person = FileHandler.readFile("data/", "person.json")
+    console.log(personJson)
   }
 }
 

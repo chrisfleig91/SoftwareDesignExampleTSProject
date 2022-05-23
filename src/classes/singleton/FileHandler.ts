@@ -1,4 +1,4 @@
-import { existsSync, mkdirSync, writeFileSync } from "fs"
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs"
 
 class FileHandler {
   private static _instance: FileHandler = new FileHandler()
@@ -18,6 +18,16 @@ class FileHandler {
       mkdirSync(pathToFile)
 
     writeFileSync(pathToFile + file, JSON.stringify(dataToWrite))
+  }
+
+  public readFile(pathToFile: string, file: string) : any {
+    if(!existsSync(pathToFile)) {
+      console.log("Dateipfad existiert nicht! Datei kann nicht gelesen werden!")
+      return ""
+    }
+
+    let raw : Buffer = readFileSync(pathToFile + file);
+    return JSON.parse(raw.toString())
   }
 }
 

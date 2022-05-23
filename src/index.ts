@@ -1,12 +1,19 @@
 import prompts from 'prompts';
-import ConsoleHandling from './classes/ConsoleHandling';
+import { Person } from './classes/Person';
+import ConsoleHandling from './classes/singleton/ConsoleHandling';
+import FileHandler from './classes/singleton/FileHandler';
 
 export class Main {
   constructor() { }
 
-  public async startApp() {
+  public startApp() {
+    this.getPersonValues();
+  }
+
+  public async getPersonValues() {
     // ConsoleHandling.printText("I'm running")
-    // let answerNameConsole = await ConsoleHandling.askAQuestion("How old are you?")
+    // let answerNameConsole = await ConsoleHandling.askAQuestion("What's your name?")
+    // let answerAgeConsole = await ConsoleHandling.askAQuestion("How old are you?")
 
     let answerName = await prompts({
       type: 'text',
@@ -18,11 +25,14 @@ export class Main {
       type: 'number',
       name: 'value',
       message: 'How old are you?',
-      validate: value => value < 18 ? `Nightclub is 18+ only` : true
     });
 
-    console.log("My Name is " + answerName.value);
-    console.log("I am " + answerAge.value + " years old!");
+    let person : Person = new Person(answerName.value, answerAge.value)
+
+    person.sayYourName()
+    person.sayYourAge()
+
+    FileHandler.writeFile(person, "data/", "person.json")
   }
 }
 

@@ -11,11 +11,12 @@ export class Person {
   }
 
   public sayYourName() {
-    console.log("Hello! My name is " + this._name)
+    if(!(this._name == ""))
+      console.log(`Hello! My name is ${this._name}`)
   }
 
   public sayYourAge() {
-    console.log("I am " + this._age + " years old!")
+    console.log(`I am ${this._age} years old!`)
   }
 
   // get and set for property _name

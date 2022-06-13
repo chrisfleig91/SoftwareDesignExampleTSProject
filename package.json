@@ -23,5 +23,9 @@
   },
   "devDependencies": {
     "@types/prompts": "^2.0.14"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node"
   }
 }

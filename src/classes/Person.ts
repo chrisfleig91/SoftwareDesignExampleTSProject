@@ -34,4 +34,8 @@ export class Person {
   public setAge(value: number) : void {
     this._age = value;
   }
+
+  public validateAge(value: string) : boolean {
+    return /^(\d|[1-9]\d{1,2})$/.test(value)
+  }
 }
